@@ -1,12 +1,18 @@
-bin/sort: obj/main.o obj/sort.o
-	gcc -o bin/sort obj/main.o obj/sort.o
+./bin/ps: ./obj/main.o ./obj/ps.o ./bin
+	gcc ./obj/main.o ./obj/ps.o -o ./bin/ps
 
-obj/main.o: src/main.c
-	gcc -c src/main.c -o obj/main.o
+./obj/main.o: ./src/main.c ./obj
+	gcc -c ./src/main.c -o ./obj/main.o -Wall
 
-obj/sort.o: src/sort.c
-	gcc -c src/sort.c -o obj/sort.o
+./obj/ps.o: ./src/ps.c ./obj
+	gcc -c ./src/ps.c -o ./obj/ps.o -Wall
+
+./bin:  
+	mkdir bin
+
+./obj: 
+	mkdir obj
 
 .PHONY: clean
 clean:
-	rm -f bin/sort obj/*.o
+	rm -f -r bin/ obj/
